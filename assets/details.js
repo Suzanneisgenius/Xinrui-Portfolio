@@ -97,7 +97,7 @@ const DETAILS = {
     title: 'Malaria Prevention & Child Mortality',
     headline: 'Who uses bed nets, and what do country-level data show?',
     tagline: 'This project examines who uses insecticide-treated nets, what country-level mortality data can tell us about their use, and whether ITN use improves prediction.',
-    contribution: "In the original three-person course project, I was responsible for the introduction, narrative and world map. For the later reanalysis, I supplied written specifications and review notes.",
+    contribution: "I led the three-person course team. I proposed the research question and the main arguments, carried out the analysis, and wrote the introduction, the narrative and the world map. For the later reanalysis, I wrote the specifications and reviewed the results.",
     chips: ['Python', 'statsmodels', 'scikit-learn', 'Cross-validation', 'Interactive maps'],
     screenshot: 'images/malaria-overview-v3_8_4.jpg',
     screenshotSize: [1280, 803],

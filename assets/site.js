@@ -17,7 +17,7 @@
     { id: 'olist-delivery-promises', year: '2026', type: 'Independent research', role: 'Research question, quantile derivation, pre-registered design, evaluation',
       summary: 'Under a 9:1 late-to-early cost ratio, promising the 90% quantile of delivery time instead of the mean cut expected loss by 34% and raised on-time coverage from 65.5% to 91.4% on 12,045 orders. A pre-registered comparison then tests whether a lower-loss model promises fewer days.',
       tools: 'Python, pandas, scikit-learn, DuckDB' },
-    { id: 'health-dashboard', year: '2026', type: 'Course project, reanalysed', role: 'Introduction, narrative and map in the original; specifications and review in the reanalysis',
+    { id: 'health-dashboard', year: '2026', type: 'Course project, reanalysed', role: 'Team lead: research question, analysis, narrative and map; specifications and review in the reanalysis',
       summary: 'The same discipline on public-health data: adjusted regression, fixed-effects panels and held-out prediction across 63 countries and 159 DHS surveys, with intervals that include zero reported as such.',
       tools: 'Python, statsmodels, scikit-learn' },
   ];
