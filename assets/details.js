@@ -45,6 +45,54 @@ const DETAILS = {
       ['06 · Reflection', 'Overfitting, data leakage, transaction costs and out-of-sample validation are treated as first-class concerns.'],
     ],
   },
+  /* Olist: numbers from the repository's saved E1 results (outputs/e1/posthoc/posthoc_v.json,
+     outputs/e1/score_verification.csv, docs/STAGE7_DATE_POLICY.md, docs/manager_handoff.md,
+     docs/E1_DECISIONS.md). Loss 23.76 -> 15.61 is the 34% cut; coverage 0.655 -> 0.914 on the same
+     12,045 orders; pinball 1.417 vs 1.324 unshifted is the 6.5% gap; AP 0.123 vs a 0.043 late rate
+     is the 2.9x; state rule 21.4 vs Olist 24.4 days is the 12%. Improvements under 6% are left out. */
+  'olist-delivery-promises': {
+    title: 'Promised Delivery Dates on Olist',
+    subtitle: 'When is a matched comparison still unequal?',
+    headline: 'How many days should a shop promise, and does a better forecast promise fewer?',
+    tagline: 'A promised delivery date trades late arrivals against spare days. I derive the loss-minimising whole-day promise as a quantile of delivery time, calibrate it so the promised coverage holds, and then test, under a pre-registered design, whether a model with lower forecast loss actually promises fewer days at the same reliability. On public Olist orders from Brazil, it did not.',
+    chips: ['Python', 'pandas', 'scikit-learn', 'DuckDB', 'Quantile regression', 'Conformal calibration', 'pytest'],
+    screenshot: 'images/olist-delivery-diagnostics.jpg',
+    screenshotSize: [1280, 800],
+    screenshotAlt: 'The project site, overview page: four questions, from which orders to check first to the mathematics of the promise, with the top-10% picks catching 34.2% of late orders in the monthly-refit view',
+    dashboard: 'https://suzanneisgenius.github.io/olist-delivery-promises/',
+    metrics: [
+      { label: 'Expected loss, quantile promise vs mean', value: '−34%', note: 'Whole-day promise at a 90% target, equivalent to a 9:1 late-to-early cost ratio; 12,045 validation orders.' },
+      { label: 'On-time coverage, mean vs quantile', value: '65.5% → 91.4%', note: 'Share of orders arriving by the promised day, same 12,045 orders.' },
+      { label: 'Late orders caught by the top 10% of risk picks', value: '30.5%', note: '2.9× a random pick with the same weekly budget; ROC AUC 0.761. Time-split, labels used only once delivered.' },
+      { label: 'Days promised vs Olist’s own estimate', value: '−12%', note: 'Per-state quantile rule: 3.0 days fewer, at coverage within the registered tolerance.' },
+    ],
+    sections: [
+      [
+        '01 · Question',
+        'Two decisions sit behind a delivery promise: which orders to check first, and how many days to promise. The second is the main study. Under an asymmetric linear loss the best whole-day promise is a quantile of delivery time, so a 90% target is the same decision as pricing a late day at nine times a spare day. The question is then whether a model with lower forecast loss turns that advantage into fewer promised days at the same coverage.'
+      ],
+      [
+        '02 · Data',
+        'Public Olist e-commerce orders, Brazil, 2017 to 2018, restricted to delivered single-seller orders. Three disjoint periods: 12,045 validation orders for the quantile-versus-mean comparison, 17,056 orders from October to December 2017 for calibration, and 19,950 orders from April to July 2018 for the pre-registered evaluation, scored once. Labels are used only once an order is delivered, so nothing at purchase time sees the future. The evaluation orders had been looked at earlier in the project, so this is pre-registered exploratory work, not a blind test.'
+      ],
+      [
+        '03 · Methods',
+        'Three policies set a whole-day promise at a 90% target: a per-state quantile rule, a linear quantile regression and shallow gradient boosting. Each is calibrated with a split-conformal-style shift on the calibration orders, frozen, then scored once on the evaluation orders. For integer outcomes I show that Y ≤ U holds exactly when Y ≤ ⌊U⌋, so rounding a continuous bound down loses no coverage. The regression-versus-rule comparison is matched on the same orders, and an additive decomposition splits any day gap into prediction, calibration and rounding. A separate logistic model ranks orders by late risk at purchase time, with time-split evaluation and no future labels.'
+      ],
+      [
+        '04 · Results',
+        '<span class="result-line"><strong>Quantile versus mean.</strong> On 12,045 validation orders the 90% quantile promise cut expected loss by <strong>34%</strong> against promising the mean and raised on-time coverage from <strong>65.5% to 91.4%</strong>.</span><span class="result-line"><strong>Rounding.</strong> Rounding the calibrated bound down instead of up shortened every continuous-model promise by one day with no loss of coverage, and widened gradient boosting’s lead over the state rule from 0.32 to 1.32 days, past the one-day bar. Post hoc, so it does not replace the registered result.</span><span class="result-line"><strong>Matched comparison.</strong> Matching the regression-versus-rule comparison moved the gap by 4.11 days and reversed the earlier verdict. Gradient boosting had <strong>6.5% lower</strong> pre-calibration pinball loss than the linear model yet promised 1.22 more days: +0.90 from prediction, +0.31 from calibration, and about zero from rounding. The two frozen policies reached 97.1% and 96.2% coverage, so they were never at the same reliability.</span><span class="result-line"><strong>Late-risk ranking.</strong> The top 10% of each week’s orders by risk held <strong>30.5%</strong> of late deliveries, <strong>2.9×</strong> a random pick with the same budget (ROC AUC 0.761).</span><span class="result-line"><strong>Against Olist’s own date.</strong> The per-state quantile rule promised 3.0 days, or <strong>12%</strong>, less than Olist’s estimate, at coverage within the registered tolerance.</span><span class="case-note">Every reported number is recomputed from the saved per-order files by a check script; the freeze record and config hashes are in the repository.</span>'
+      ],
+      [
+        '05 · What the analysis cannot show',
+        'Every calibrated policy over-covered the evaluation period, reaching 96% to 97% for a 90% target. Changing delivery times, the cohort filter on Olist’s estimated date and order mix could each explain it, and the study does not separate them. There is one evaluation period, so whether rounding down or recalibration would hold up in a new period is untested, and the results cover delivered single-seller orders only. The risk ranking shows which orders to look at first; measuring prevented delays would need an intervention study.'
+      ],
+      [
+        '06 · Reflection',
+        'Lower loss did not mean a shorter promise. The gap came from how the calibration shift carried from one period to the next, which no loss metric on the training period could show. I learned to compare policies at matched reliability, to register the comparison before scoring, and to write the rounding rule down as a proof rather than a convention.'
+      ]
+    ],
+  },
   'health-dashboard': {
     title: 'Malaria Prevention & Child Mortality',
     headline: 'Who uses bed nets, and what do country-level data show?',

@@ -40,7 +40,7 @@ A personal site for graduate applications. Readers are admissions committees and
 
 `LINKS` in `site.js`, one object per project id: `dashboard` (page served by this site) + `dashboardLabel`; optional `second` (companion page), `offline` (downloadable file, rendered with `download`), `app` (external live app, rendered with ↗ only when it holds an `http(s)` URL) and `hint` (becomes the footnote attached to `app`). Projects without `dashboard` get no "Open" row. Key numbers from `details.js` render only when `d.metrics` exists and `d.actions` is unset.
 
-Routes: `/` home; `/#/<id>` project page (`health-dashboard`, `spy-ief-research-atlas`, `bankroll-risk`, `quant-platform`); `/#t/about`, `/#t/education`, `/#t/contact` open a hero terminal tab; `/#projects`, `/#about` scroll.
+Routes: `/` home; `/#/<id>` project page (`health-dashboard`, `spy-ief-research-atlas`, `bankroll-risk`, `quant-platform`, `olist-delivery-promises`); `/#t/about`, `/#t/education`, `/#t/contact` open a hero terminal tab; `/#projects`, `/#about` scroll.
 
 ## 3. Design system (do not drift)
 

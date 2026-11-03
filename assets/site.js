@@ -14,6 +14,9 @@
       summary: 'A factor research framework for commodity futures: momentum, volatility, valuation and quality factors, a fixed backtest contract, and validation against overfitting and leakage.',
       tools: 'Python, pandas, NumPy',
       note: 'Internship work. Code and data stay private; this page describes the method only.' },
+    { id: 'olist-delivery-promises', year: '2026', type: 'Independent research', role: 'Research question, quantile derivation, pre-registered design, evaluation',
+      summary: 'Under a 9:1 late-to-early cost ratio, promising the 90% quantile of delivery time instead of the mean cut expected loss by 34% and raised on-time coverage from 65.5% to 91.4% on 12,045 orders. A pre-registered comparison then tests whether a lower-loss model promises fewer days.',
+      tools: 'Python, pandas, scikit-learn, DuckDB' },
     { id: 'health-dashboard', year: '2026', type: 'Course project, reanalysed', role: 'Introduction, narrative and map in the original; specifications and review in the reanalysis',
       summary: 'The same discipline on public-health data: adjusted regression, fixed-effects panels and held-out prediction across 63 countries and 159 DHS surveys, with intervals that include zero reported as such.',
       tools: 'Python, statsmodels, scikit-learn' },
@@ -21,6 +24,7 @@
 
   const CONTRIBUTION = {
     'bankroll-risk': 'I focused on how reliable the simulated risk estimates are. For the ruin events that 100-hand checkpoints miss, I added a Brownian-bridge correction and checked the results against the exact finite-horizon first-passage formula. When an engine update changed results for the same inputs and seed, I separated the effect of the new random numbers from that of the correction, and used 40 seeds of 2,000 paths to tell Monte Carlo variation apart from a systematic change in how ruin was detected. I also studied uncertain win rates and other ways results might arrive, compared the Python research engine with the web version, and recorded the settings, seeds, versions and limitations so each comparison can be rerun. AI tools helped me review code and tests and check calculations.',
+    'olist-delivery-promises': 'I led the project: the research question, the derivation of the promise as a quantile, the pre-registration, the matched evaluation design and the write-up. Every reported number is recomputed by a check script from the saved per-order results (362 tests). AI tools helped refine selected parts of the code; the authorship statement in the repository records the scope.',
     'quant-platform': 'Independent work during a quantitative research internship. I designed the factor definitions, the backtest contract and the validation checks; the implementation is not public.',
   };
 
@@ -30,6 +34,7 @@
   const LINKS = {
     'bankroll-risk': { dashboard: 'projects/poker-risk-lab/', dashboardLabel: 'Research overview', second: 'projects/poker-risk-lab/case-study/', secondLabel: 'Case study',
       app: 'https://poker-analytics-suite.onrender.com/', appLabel: 'Interactive lab', hint: 'Runs on Render\'s free plan; after a quiet spell the first visit takes about a minute to start.' },
+    'olist-delivery-promises': { dashboard: 'https://suzanneisgenius.github.io/olist-delivery-promises/', dashboardLabel: 'Project site' },
     'health-dashboard': { dashboard: 'malaria_dashboard_v3_8_4.html', dashboardLabel: 'Dashboard' },
     'spy-ief-research-atlas': { dashboard: 'projects/spy-ief/', dashboardLabel: 'Interactive atlas', offline: 'projects/spy-ief/offline.html', offlineLabel: 'Offline atlas' },
   };
