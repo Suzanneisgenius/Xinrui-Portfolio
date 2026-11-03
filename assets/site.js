@@ -164,15 +164,29 @@
       ${d.strands.map(s => `<div class="strand"><span class="mono">${esc(stripNum(s.tag.replace(/^STRAND\s*/i, '')).toLowerCase())}</span><h3>${s.title}</h3><p>${s.body}</p></div>`).join('')}
     </div>`;
   }
+  /* exhibit: a screenshot is the project's front door, so the whole image links to the live
+     thing it shows (the external app if there is one, else the hosted dashboard) and carries a
+     visible "Open" label; the SPY/IEF data figure follows its screenshot. */
   function figure(id, d) {
+    const L = LINKS[id] || {};
+    let shot = '';
+    if (d.screenshot) {
+      const href = L.app && /^https?:\/\//.test(L.app) ? L.app : L.dashboard;
+      const label = href ? 'Open the ' + String(L.app && /^https?:\/\//.test(L.app) ? L.appLabel : L.dashboardLabel).toLowerCase() : '';
+      const size = d.screenshotSize ? ` width="${d.screenshotSize[0]}" height="${d.screenshotSize[1]}"` : '';
+      const img = `<img src="${esc(d.screenshot)}" alt="${esc(d.screenshotAlt || '')}"${size} loading="lazy">`;
+      const inner = href
+        ? `<a class="figure-link" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(label)} (opens in a new tab)">${img}<span class="open-label ext">${esc(label)}</span></a>`
+        : img;
+      shot = `<figure class="figure">${inner}<figcaption>${esc(d.screenshotAlt || '')}</figcaption></figure>`;
+    }
     if (id === 'spy-ief-research-atlas' && window.SPY_FIGURE) {
-      return `<div class="spy-figure">
+      return shot + `<div class="spy-figure">
         <p class="t2">When stocks fell hardest, did bonds still help?</p>
         <p class="meta" style="margin-top:8px">SPY and IEF return indices, 2002-08-01 = 100, log scale. Data through 2026-10-02.</p>
         ${window.SPY_FIGURE}</div>`;
     }
-    if (d.screenshot) return `<figure class="figure"><img src="${esc(d.screenshot)}" alt="${esc(d.screenshotAlt || '')}" loading="lazy"><figcaption>${esc(d.screenshotAlt || '')}</figcaption></figure>`;
-    return '';
+    return shot;
   }
   const chev = dir => dir === 'prev'
     ? '<svg viewBox="0 0 22 44" aria-hidden="true"><path d="M16 4 L5 22 L16 40"/></svg>'

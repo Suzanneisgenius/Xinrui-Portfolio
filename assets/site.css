@@ -262,6 +262,18 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
 .detail .figure { margin-top: 48px; }
 .detail .figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
 .detail .figure figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
+/* the screenshot is a link; the label reuses the header CTA pill so it reads as the page's one button */
+.figure-link { position: relative; display: block; color: inherit; }
+.figure-link img { transition: border-color 200ms var(--ease); }
+.figure-link:hover img { border-color: var(--accent); }
+.figure-link .open-label {
+  position: absolute; right: 16px; bottom: 16px; display: inline-flex; align-items: center; height: 40px; padding: 0 18px;
+  border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 14px; font-weight: 500; letter-spacing: .01em; white-space: nowrap;
+  transition: transform 200ms var(--ease), opacity 200ms var(--ease);
+}
+.figure-link:hover .open-label { transform: translateY(-1px); }
+.figure-link:focus-visible { outline-offset: 4px; }
+@media (max-width: 560px) { .figure-link .open-label { right: 10px; bottom: 10px; height: 36px; padding: 0 14px; font-size: 13px; } }
 
 .detail .body { margin-top: 56px; }
 .detail .body h2 { margin-top: 48px; }

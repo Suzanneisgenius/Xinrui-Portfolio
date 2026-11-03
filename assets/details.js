@@ -8,6 +8,9 @@ const DETAILS = {
     headline: 'How stable is the diversification relationship between U.S. equities and Treasury bonds?',
     tagline: 'Among each period’s worst 5% SPY days, IEF rose on 77.6% across the full sample (2002–2026), versus 40.0% in 2022–2023 and 48.6% in January 2024–October 2026, when stock–bond correlation point estimates were positive but their 95% intervals included zero.',
     chips: ['Python', 'JavaScript', 'Plotly', 'Time Series', 'Statistical Inference', 'Reproducibility'],
+    screenshot: 'images/spy-ief-atlas.jpg',
+    screenshotSize: [1280, 800],
+    screenshotAlt: 'The interactive atlas, overview page: full-sample SPY and IEF daily-return correlation −0.29 beside the latest period’s +0.07, with the analysis-range control above',
     metrics: [
       { label: 'Aligned daily returns', value: '6,082' },
       { label: 'Data through', value: '2026-10-02' },
@@ -49,6 +52,7 @@ const DETAILS = {
     contribution: "In the original three-person course project, I was responsible for the introduction, narrative and world map. For the later reanalysis, I supplied written specifications and review notes.",
     chips: ['Python', 'statsmodels', 'scikit-learn', 'Cross-validation', 'Interactive maps'],
     screenshot: 'images/malaria-overview-v3_8_4.jpg',
+    screenshotSize: [1280, 803],
     screenshotAlt: 'Our v3.8.4 dashboard overview with seven sections and an interactive ITN-use map',
     dashboard: 'malaria_dashboard_v3_8_4.html',
     metrics: [
@@ -96,6 +100,7 @@ const DETAILS = {
     tagline: 'Poker bankrolls are my test case for a general question in simulation: how much of the error in a risk estimate can more computing remove? A Python research engine produces the saved results, and the web app reruns scenarios on its server.',
     chips: ['Python', 'NumPy', 'SciPy', 'Node.js', 'Monte Carlo', 'Bayesian inference', 'Numerical validation'],
     screenshot: 'images/poker-risk-lab-app.jpg',
+    screenshotSize: [1280, 800],
     screenshotAlt: 'Risk Lab in the live app, Positive edge scenario (the reference case): 6.3% risk of hitting zero from 2,000 paths, 95% interval 5.4% to 7.5%, beside simulated bankroll paths',
     metrics: [
       { label: 'Exact model risk', value: '7.17%', note: 'Reference case: 30 buy-ins, +3 bb/100, 90 bb/100 swings, 100,000 hands.' },
