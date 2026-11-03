@@ -7,7 +7,7 @@
     { id: 'spy-ief-research-atlas', year: '2024–26', type: 'Course study, extended', role: 'Co-author of the 2024 study; research questions and review for the extension',
       summary: 'IEF rose on 78% of the worst SPY days overall, versus 40–49% in the two periods since 2022; I examined this weaker historical protection using return data, inflation context and time-series evaluation.',
       tools: 'Python, JavaScript, Plotly' },
-    { id: 'bankroll-risk', year: '2026', type: 'Independent study', role: 'Numerical validation, uncertainty propagation, Python/web comparison',
+    { id: 'bankroll-risk', year: '2025–26', type: 'Independent study', role: 'Numerical validation, uncertainty propagation, Python/web comparison',
       summary: 'A simulated ruin probability can be wrong for three reasons: simulation noise, an uncertain win rate, and the wrong model of how results arrive. I measure each one separately against an exact first-passage benchmark; only the first shrinks with more computing.',
       tools: 'Python, NumPy, SciPy, Node' },
     { id: 'quant-platform', year: '2026', type: 'Internship research', role: 'Factor definitions, backtest contract, validation checks',
