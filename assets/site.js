@@ -8,7 +8,7 @@
       summary: 'IEF rose on 78% of the worst SPY days overall, versus 40–49% in the two periods since 2022; I examined this weaker historical protection using return data, inflation context and time-series evaluation.',
       tools: 'Python, JavaScript, Plotly' },
     { id: 'bankroll-risk', year: '2026', type: 'Independent study', role: 'Numerical validation, uncertainty propagation, Python/web comparison',
-      summary: 'Ruin probability under an absorbing boundary: how far a headline estimate moves once barrier resolution, Monte Carlo error, parameter uncertainty and model misspecification are each stress-tested, cross-checked against a first-passage solution.',
+      summary: 'A simulated ruin probability can be wrong for three reasons: simulation noise, an uncertain win rate, and the wrong model of how results arrive. I measure each one separately against an exact first-passage benchmark; only the first shrinks with more computing.',
       tools: 'Python, NumPy, SciPy, Node' },
     { id: 'quant-platform', year: '2026', type: 'Internship research', role: 'Factor definitions, backtest contract, validation checks',
       summary: 'A factor research framework for commodity futures: momentum, volatility, valuation and quality factors, a fixed backtest contract, and validation against overfitting and leakage.',
@@ -20,7 +20,7 @@
   ];
 
   const CONTRIBUTION = {
-    'bankroll-risk': 'My own work focused on testing the reliability of simulated bankroll-risk estimates. I investigated how checking for ruin at 100-hand intervals could miss threshold crossings between checkpoints, incorporated a Brownian-bridge correction, and compared the estimates with an analytical finite-horizon first-passage benchmark. When an engine update changed the output for the same inputs and seed, I separated the effects of changes to random-number generation from those of the bridge correction, using 40 random seeds and 2,000 paths per seed. I also examined uncertainty in the estimated win rate, tested alternative assumptions about how bankroll returns evolve, ran Markov-chain absorption checks, and compared the Python research engine with the web implementation.',
+    'bankroll-risk': 'I focused on how reliable the simulated risk estimates are. For the ruin events that 100-hand checkpoints miss, I added a Brownian-bridge correction and checked the results against the exact finite-horizon first-passage formula. When an engine update changed results for the same inputs and seed, I separated the effect of the new random numbers from that of the correction, and used 40 seeds of 2,000 paths to tell Monte Carlo variation apart from a systematic change in how ruin was detected. I also studied uncertain win rates and other ways results might arrive, compared the Python research engine with the web version, and recorded the settings, seeds, versions and limitations so each comparison can be rerun. AI tools helped me review code and tests and check calculations.',
     'quant-platform': 'Independent work during a quantitative research internship. I designed the factor definitions, the backtest contract and the validation checks; the implementation is not public.',
   };
 

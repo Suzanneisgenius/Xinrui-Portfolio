@@ -72,7 +72,7 @@ Motion inventory, complete. Terminal typing; title and link colour on hover (200
 ## 4. Content rules (from 04 and the r7 handoff)
 
 - Never invent numbers, awards, screenshots or results. Where a figure is unknown, say so or leave it out.
-- Keep caveats attached to numbers: the Malaria −0.43% carries its 95% CI; the Poker 7.2% and 37.4% are different scenarios, not a rise; SPY/IEF lines are return indices, not prices; recent correlations have intervals that include zero.
+- Keep caveats attached to numbers: the Malaria −0.43% carries its 95% CI; the Poker 7.17% is the exact model risk for one reference case, and its three error sources (±1.13 pts simulation noise, 0.1%–83.3% from an uncertain win rate, 6.4%–20.3% across return models) are reported side by side, never summed; SPY/IEF lines are return indices, not prices; recent correlations have intervals that include zero.
 - Hidden links, `noindex` and robots are not access control. Private project material does not go on the site; the Multi-Factor page describes method only. From the poker repo, only `outputs/github-pages/` may be hosted here (its `GITHUB_PAGES.md` is the allowlist).
 - Public contact is the Gmail address and LinkedIn. No phone, no home address.
 - Copy voice: short sentences, plain verbs, student-authentic. Run new prose through the humanizer check: no "not X but Y", no one-line closers, no triads for rhythm, no em dashes, no "showcase / leverage / passionate / journey".
@@ -82,11 +82,11 @@ Motion inventory, complete. Terminal typing; title and link colour on hover (200
 1. GitHub profile URL `github.com/Suzanneisgenius` (appears in `index.html` twice and the contact template). Confirm.
 2. Project years in `PROJECTS`: 2026 / 2024–26 / 2026 / 2025 were inferred from the r7 handoff. Confirm.
 3. CV: add a public version (no phone or address) at `cv/Xinrui_Song_CV.pdf`, then add a `CV ↗` link to `.tabs` in the hero and to the contact template.
-4. Poker screenshot: when available, set `DETAILS['bankroll-risk'].screenshot` and `screenshotAlt`; the exhibit slot renders it automatically.
+4. Poker screenshot: done in the quant copy on 2026-11-03 (`images/poker-risk-lab-app.jpg`, the Risk Lab "Positive edge" scenario from the local app at 7b35a0a; `DETAILS['bankroll-risk'].screenshot` and `screenshotAlt` set). Still open in the baseline.
 5. Multi-Factor: either add one de-identified equity/drawdown figure the same way, or accept that the page stays text-only.
 6. Hero line 2 wording and the About paragraphs are drafts; edit in `index.html`.
 7. `og:image` in `index.html` is a relative path; make it the absolute URL once the site has a domain.
-8. Poker repo housekeeping (outside this folder): local `main` of `~/poker-analytics-private` is one commit ahead of `origin/main` (7b35a0a, lowers the Render work ceiling and records the live URL). Pushing it redeploys the service. The live service currently runs 3fcb028, the same commit the static artifact here was built from.
+8. Poker repo housekeeping (outside this folder): `~/poker-analytics-private` `main` is pushed (7b35a0a at `origin/main`, checked 2026-11-03). Whether Render has redeployed to it has not been checked from here; the static artifact in `projects/poker-risk-lab/` was built from 3fcb028, and the saved case-study results it carries match the 7b35a0a numbers used on the Poker page.
 9. Optional trims: Poker "My part" is nine sentences; three or four would read better. Poker spec sheet has four footnotes; two would do.
 10. Optional, quant copy only: a fifth project on commodity futures built from public data. Not added in the 2026-11-02 round. It needs its own six sections in `details.js`, a `PROJECTS` entry, and at least one real figure before it goes on the list.
 
