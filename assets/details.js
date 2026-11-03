@@ -61,10 +61,10 @@ const DETAILS = {
     screenshotAlt: 'The project site, overview page: four questions, from which orders to check first to the mathematics of the promise, with the top-10% picks catching 34.2% of late orders in the monthly-refit view',
     dashboard: 'https://suzanneisgenius.github.io/olist-delivery-promises/',
     metrics: [
-      { label: 'Expected loss, quantile promise vs mean', value: '−34%', note: 'Whole-day promise at a 90% target, equivalent to a 9:1 late-to-early cost ratio; 12,045 validation orders.' },
+      { label: 'Expected loss, quantile promise vs mean', value: '34% lower', note: 'Whole-day promise at a 90% target, equivalent to a 9:1 late-to-early cost ratio; 12,045 validation orders.' },
       { label: 'On-time coverage, mean vs quantile', value: '65.5% → 91.4%', note: 'Share of orders arriving by the promised day, same 12,045 orders.' },
       { label: 'Late orders caught by the top 10% of risk picks', value: '30.5%', note: '2.9× a random pick with the same weekly budget; ROC AUC 0.761. Time-split, labels used only once delivered.' },
-      { label: 'Days promised vs Olist’s own estimate', value: '−12%', note: 'Per-state quantile rule: 3.0 days fewer, at coverage within the registered tolerance.' },
+      { label: 'Days promised, Olist’s estimate → per-state rule', value: '24.4 → 21.4 days', note: '3.0 days (12%) fewer under the per-state quantile rule, at coverage within the registered tolerance. Stage-7 window, purchases April to July 2018.' },
     ],
     sections: [
       [
