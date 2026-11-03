@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xinrui Song</title>
+<meta name="description" content="Xinrui Song, mathematics student at UT Austin. Projects in financial mathematics, stochastic modelling and risk, written up with methods, results and limitations.">
+<meta property="og:title" content="Xinrui Song">
+<meta property="og:description" content="Mathematics at UT Austin. Projects in financial mathematics, stochastic modelling and risk.">
+<meta property="og:type" content="website">
+<!-- og:image is absolute so share previews work; change it if the site moves -->
+<meta property="og:image" content="https://suzanneisgenius.github.io/quant-finance-portfolio/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<script>
+  try { var t = localStorage.getItem('xs-theme'); if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="#top">Xinrui Song</a>
+    <nav class="pill" aria-label="Site">
+      <a id="nav-projects" href="#projects">Projects</a>
+      <a id="nav-about" href="#about">About</a>
+      <a id="nav-contact" href="#t/contact">Contact</a>
+    </nav>
+    <span class="cta"><a href="mailto:suszanee6@gmail.com">Email me</a><button id="theme-toggle" class="theme" type="button" aria-label="Switch color theme">Dark</button></span>
+  </div>
+</header>
+
+<nav class="ghost" id="ghost" aria-label="Sections">
+  <a href="#top" data-for="top">Top</a>
+  <a href="#projects" data-for="projects">Projects</a>
+  <a href="#about" data-for="about">About</a>
+</nav>
+
+<main id="top">
+
+<div id="view-home">
+
+  <section class="hero" aria-labelledby="name">
+    <div class="hero-card">
+      <img class="avatar" src="images/portrait.jpg" alt="" width="128" height="128" onerror="this.remove()">
+      <h1 id="name" class="t1">Xinrui Song</h1>
+      <p class="tag">Mathematics at UT Austin, graduating December 2026<br>Quantitative research on futures signals and portfolio risk</p>
+      <nav class="tabs" aria-label="Quick links">
+        <a href="#t/about" data-tab="about">About</a>
+        <a href="#t/education" data-tab="education">Education</a>
+        <a href="#t/contact" data-tab="contact">Contact</a>
+        <a href="#projects">Projects</a>
+        <a href="https://www.linkedin.com/in/xinrui-song-bba659338/" class="ext" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+      <pre class="terminal" id="terminal" aria-live="polite" hidden></pre>
+
+      <template id="tab-about"><span class="prompt">&gt; open about</span>
+
+I study mathematics at UT Austin, with minors in Statistics and Data Science and a certificate in Programming and Computing. I graduate in December 2026 and am applying to master’s programs in quantitative finance and asset management for fall 2027. My work asks how far a number from a model can be trusted. As a quantitative research intern at Guangzhou Futures in summer 2026, I built a Python research platform for 54 commodity futures in five sectors and tested eight fundamental factors with IC/ICIR, quintile backtests and single-factor attribution. An equal-weight vote of the factors trailed the strongest single factor in every sector. Working out why, through cross-factor correlations, alternative weights and orthogonalization, taught me to check what a factor measures and what it assumes before I trust its backtest. The projects on this site carry that question into portfolio risk: when stock–bond diversification stops working, and how a ruin probability moves once simulation error, parameter uncertainty and model misspecification are each stress-tested. I want to do research a trading or portfolio team can act on: signals measured against what the portfolio already holds, and risk estimates that come with their intervals.</template>
+
+      <template id="tab-education"><span class="prompt">&gt; open education</span>
+
+- B.S. Mathematics, The University of Texas at Austin, December 2026
+- Minors: Statistics; Data Science
+- Certificate: Programming and Computing
+- Mathematics: Probability I, Introduction to Stochastic Processes (highest overall grade in class, spring 2025), Linear Algebra and Matrix Theory, Differential Equations with Linear Algebra, Applied Statistics; in progress: Real Analysis, Multivariable Calculus, Elements of Statistics
+- Computing: Machine Learning, Elements of Software Design, Elements of Data Science, Elements of Databases (in progress)
+- Methods: factor evaluation (IC/ICIR, quintile backtests, attribution), rolling out-of-sample validation with look-ahead controls, Monte Carlo and absorbing-boundary simulation, Bayesian uncertainty propagation, moving-block bootstrap, Newey-West inference, regularized regression, nested and grouped cross-validation
+- Tools: Python (NumPy, pandas, SciPy, statsmodels, scikit-learn), R, SQL, JavaScript, Plotly, Dash, Git</template>
+
+      <template id="tab-contact"><span class="prompt">&gt; open contact</span>
+
+- Email     <a href="mailto:suszanee6@gmail.com">suszanee6@gmail.com</a>
+- LinkedIn  <a href="https://www.linkedin.com/in/xinrui-song-bba659338/" target="_blank" rel="noopener">linkedin.com/in/xinrui-song-bba659338</a>
+- Location  Austin, Texas</template>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="col">
+      <div class="section-head"><h2 id="projects-h" class="t2">Projects</h2></div>
+      <p class="muted" style="margin-top:16px;max-width:34em">Three projects sit in markets and risk; the fourth applies the same statistical discipline to public-health data. Each page states the question, the data, my part, the method, the result with its uncertainty, and what the analysis cannot show.</p>
+      <div id="project-list" class="project-list"></div>
+    </div>
+  </section>
+
+  <section id="about" class="about" aria-labelledby="about-h">
+    <div class="col">
+      <h2 id="about-h" class="t2">About</h2>
+      <div class="spec">
+        <div class="spec-row">
+          <div class="spec-item"><span class="spec-l">Degree</span><span class="spec-v">B.S. Mathematics, The University of Texas at Austin</span></div>
+          <div class="spec-item"><span class="spec-l">Graduation</span><span class="spec-v">December 2026</span></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-item"><span class="spec-l">Minors</span><span class="spec-v">Statistics; Data Science</span></div>
+          <div class="spec-item"><span class="spec-l">Certificate</span><span class="spec-v">Programming and Computing</span></div>
+          <div class="spec-item"><span class="spec-l">Applying to</span><span class="spec-v">Master’s programs in quantitative finance and asset management, fall 2027</span></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-item"><span class="spec-l">Experience</span><span class="spec-v">Quantitative research intern, Guangzhou Futures, 2026; data analytics internships at China Everbright Securities, 2025, and Guangdong Bozhong, 2024–25</span></div>
+        </div>
+      </div>
+      <div class="stack" style="margin-top:32px">
+        <p>I work where statistics meets markets: testing whether a signal adds anything, measuring portfolio risk, and saying how much uncertainty sits around each estimate. In summer 2026 I was a quantitative research intern in asset management at Guangzhou Futures. I built the research platform for 54 commodity futures across five sectors, with data availability, signal formation and execution timestamped separately to rule out look-ahead bias, and tested eight fundamental factors. An equal-weight vote of the factors trailed the best single factor in every sector. Finding out why taught me to ask what a factor measures, what it assumes, and what it adds beyond the signals already in use. I also built a NAV risk dashboard for two live futures accounts and automated the team’s daily data checks.</p>
+        <p>Two earlier internships were about data quality before modeling: validating three million financial time-series observations at China Everbright Securities, and reconciling a million records across five datasets at Guangdong Bozhong, where the matching accuracy went from 95.6% to 98.4%.</p>
+        <p>The projects above apply the same discipline to public data: stock–bond diversification over 6,082 days of SPY and IEF returns with bootstrap intervals, a ruin probability stress-tested for four kinds of error, and a reanalysis of what country-level health data can and cannot show. Each page ends with what the analysis does not establish.</p>
+        <p>Smaller coursework builds, not listed above: a Tableau business-intelligence dashboard and a Flask weather application that goes from API to database to interface.</p>
+        <p class="muted">Email is the fastest way to reach me: <a href="mailto:suszanee6@gmail.com">suszanee6@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+<div id="view-detail" hidden>
+  <div id="detail-root"></div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="col">
+    <span>© 2026 Xinrui Song</span>
+    <span><a href="#top">Back to top</a></span>
+  </div>
+</footer>
+
+<script src="assets/details.js"></script>
+<script src="assets/spy-figure.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
