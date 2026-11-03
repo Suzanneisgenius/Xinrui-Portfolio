@@ -179,7 +179,9 @@
       const href = L.app && /^https?:\/\//.test(L.app) ? L.app : L.dashboard;
       const label = href ? 'Open the ' + String(L.app && /^https?:\/\//.test(L.app) ? L.appLabel : L.dashboardLabel).toLowerCase() : '';
       const size = d.screenshotSize ? ` width="${d.screenshotSize[0]}" height="${d.screenshotSize[1]}"` : '';
-      const img = `<img src="${esc(d.screenshot)}" alt="${esc(d.screenshotAlt || '')}"${size} loading="lazy">`;
+      /* one retry with a cache-busting query: a 404 cached during a Pages redeploy otherwise sticks for ten minutes */
+      const retry = `onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.split('?')[0]+'?r='+Date.now()}"`;
+      const img = `<img src="${esc(d.screenshot)}" alt="${esc(d.screenshotAlt || '')}"${size} loading="lazy" ${retry}>`;
       const inner = href
         ? `<a class="figure-link" href="${esc(href)}" target="_blank" rel="noopener" aria-label="${esc(label)} (opens in a new tab)">${img}<span class="open-label ext">${esc(label)}</span></a>`
         : img;
