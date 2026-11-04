@@ -10,9 +10,9 @@
     { id: 'bankroll-risk', year: '2025–26', type: 'Independent study', role: 'Numerical validation, uncertainty propagation, Python/web comparison',
       summary: 'A simulated ruin probability can be wrong for three reasons: simulation noise, an uncertain win rate, and the wrong model of how results arrive. I measure each one separately against an exact first-passage benchmark; only the first shrinks with more computing.',
       tools: 'Python, NumPy, SciPy, Node' },
-    { id: 'quant-platform', year: '2026', type: 'Internship research', role: 'Factor definitions, backtest contract, validation checks',
-      summary: 'A factor research framework for commodity futures: momentum, volatility, valuation and quality factors, a fixed backtest contract, and validation against overfitting and leakage.',
-      tools: 'Python, pandas, NumPy',
+    { id: 'quant-platform', year: '2026', type: 'Internship research', role: 'Factor definitions, backtest contract and validation checks; the NAV risk monitor end to end',
+      summary: 'Two systems from a summer at Guangzhou Futures: a factor research platform for 54 commodity futures with look-ahead ruled out by construction, and a net-value risk monitor I designed around one measure, the slope of the equity curve, that turns an account’s daily net value into graded de-risking alerts.',
+      tools: 'Python, pandas, NumPy, JavaScript',
       note: 'Internship work. Code and data stay private; this page describes the method only.' },
     { id: 'olist-delivery-promises', year: '2026', type: 'Independent research', role: 'Research question, quantile derivation, pre-registered design, evaluation',
       summary: 'Under a 9:1 late-to-early cost ratio, promising the 90% quantile of delivery time instead of the mean cut expected loss by 34% and raised on-time coverage from 65.5% to 91.4% on 12,045 orders. A pre-registered comparison then tests whether a lower-loss model promises fewer days.',
@@ -25,7 +25,7 @@
   const CONTRIBUTION = {
     'bankroll-risk': 'I focused on how reliable the simulated risk estimates are. For the ruin events that 100-hand checkpoints miss, I added a Brownian-bridge correction and checked the results against the exact finite-horizon first-passage formula. When an engine update changed results for the same inputs and seed, I separated the effect of the new random numbers from that of the correction, and used 40 seeds of 2,000 paths to tell Monte Carlo variation apart from a systematic change in how ruin was detected. I also studied uncertain win rates and other ways results might arrive, compared the Python research engine with the web version, and recorded the settings, seeds, versions and limitations so each comparison can be rerun. AI tools helped me review code and tests and check calculations.',
     'olist-delivery-promises': 'I led the project: the research question, the derivation of the promise as a quantile, the pre-registration, the matched evaluation design and the write-up. Every reported number is recomputed by a check script from the saved per-order results (362 tests). AI tools helped refine selected parts of the code; the authorship statement in the repository records the scope.',
-    'quant-platform': 'Independent work during a quantitative research internship. I designed the factor definitions, the backtest contract and the validation checks; the implementation is not public.',
+    'quant-platform': 'Both parts were my own work during the internship. For the factor platform I defined the factors, the backtest contract and the validation checks. The net-value risk monitor is my design end to end: the slope-based growth-rate measure, the two-threshold rule, the scoring, the calibration of each rule against the drawdowns that followed its signals, and the offline tool itself. The code and the account data stay with the firm.',
   };
 
   /* Each project's entry points. `dashboard` is a page served by this site; `second` is a

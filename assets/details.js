@@ -31,18 +31,48 @@ const DETAILS = {
     offline: 'projects/spy-ief/offline.html',
   },
 
+  /* Guangzhou Futures internship, summer 2026. Method-level description only: code and account data
+     stay with the firm. Factor-platform facts (54 futures, five sectors, eight factors, the equal-weight
+     result) are the owner's own account of the work; the NAV monitor's method (3/5/10-point slopes,
+     the 10-minus-3 growth-rate gap, 0.20 / 0.35 %/day thresholds, five scored rules, post-signal
+     drawdown calibration) is read from the monitor's source. No sample sizes or account figures here. */
   'quant-platform': {
-    title: 'Multi-Factor Quant Strategy Research Platform',
-    headline: 'A model is only useful if its assumptions survive review.',
-    tagline: 'A systematic research framework for feature engineering, backtesting, validation, and risk-aware evaluation on financial time-series data.',
-    chips: ['Python', 'Pandas', 'NumPy', 'Validation'],
-        sections: [
-      ['01 · Project Mission', 'How can testable trading signals be constructed from financial time series, and how do we know a backtest result means anything?'],
-      ['02 · Data & System Input', 'Prices, returns, volume, fundamental indicators, industry classification across a multi-year futures sample.'],
-      ['03 · Methodology', 'Momentum, volatility, valuation and quality factor construction; cross-sectional standardization; signal combination; portfolio construction.'],
-      ['04 · System Design', 'Rebalancing frequency, trading rules, and transaction-cost assumptions define the backtest contract.'],
-      ['05 · Results', 'Cumulative return and drawdown profiles across factor blends; every number regenerates from code.'],
-      ['06 · Reflection', 'Overfitting, data leakage, transaction costs and out-of-sample validation are treated as first-class concerns.'],
+    title: 'Futures Factor Platform and NAV Risk Monitor',
+    subtitle: 'Two systems from a summer on an asset-management desk',
+    headline: 'Which signals add anything, and when should an account take risk off?',
+    tagline: 'As a quantitative research intern at Guangzhou Futures I built two systems for the asset-management desk. The first is a research platform that tests fundamental factors on commodity futures without letting the future leak into the backtest. The second, which I designed end to end, reads an account’s daily net value and turns the slope of that curve into graded de-risking alerts. Both run on whatever history the desk feeds them.',
+    chips: ['Python', 'pandas', 'NumPy', 'JavaScript', 'Factor evaluation', 'Backtesting', 'Risk monitoring'],
+    metrics: [
+      { label: 'Commodity futures covered', value: '54', note: 'Five sectors; eight fundamental factors tested on the platform.' },
+      { label: 'Slope horizons', value: '3 / 5 / 10 days', note: 'Least-squares slope of net value over the trailing points, scaled to percent per day.' },
+      { label: 'De-risking thresholds', value: '0.20 / 0.35 %/day', note: 'Growth-rate gap, 10-day slope minus 3-day slope: observe above 0.20, act above 0.35.' },
+      { label: 'Scored rules', value: '5', note: 'Each weighted and calibrated by the drawdown that followed its own signals; rules that did not verify are kept at low weight and labelled.' },
+    ],
+    sections: [
+      [
+        '01 · Question',
+        'The desk asked two things. Of the fundamental factors it already watched, which ones add anything beyond the signals in use, and how would we know a backtest result means something? And once an account is making money, when should it take risk off: how much is enough, and what does slowing look like before it turns into a drawdown? The first question became a factor research platform. The second became a net-value risk monitor built around one measure, the slope of the account’s equity curve.'
+      ],
+      [
+        '02 · Factor platform',
+        'The platform covers 54 commodity futures in five sectors. Data availability, signal formation and execution are timestamped separately, so a factor can only use what was known when the trade would have been placed; this rules out look-ahead bias by construction rather than by inspection. Eight fundamental factors were evaluated with IC and ICIR, quintile backtests and single-factor attribution under one fixed backtest contract: the same rebalancing rule, trading rule and cost assumptions for every factor, so results are comparable. The platform also automated the desk’s daily data checks.'
+      ],
+      [
+        '03 · NAV risk monitor',
+        'The monitor is my own design. For each day it fits a least-squares line to the last 3, 5 and 10 net-value points and reads the slope as a growth rate in percent per day. The core measure is the gap between the 10-day and the 3-day slope: how much slower the account is growing now than over the past two weeks. Two thresholds turn that gap into a decision. Above 0.20 percent per day the account is on watch and the desk is told to think about locking in gains; above 0.35, or above 0.20 with the 3-day slope already negative, the monitor calls for a reduction. Four further rules add to a score: margin pressure rising while net value stalls, a loss taken at high margin usage, a new high whose 3-day slope has already dropped below the 5- and 10-day slopes, and volatility entering the account’s own top decile on a down day. The score maps to four levels, and only the top level says reduce. Every rule was calibrated the same way, by the worst drawdown in the days after its signals against the all-days baseline, and the two rules that did not separate from the baseline were kept at low weight and labelled as unverified on the page itself.'
+      ],
+      [
+        '04 · System design',
+        '<span class="result-line"><strong>One file, no server.</strong> The monitor is a single offline HTML page with the rules, the charts and the data inside it, so the desk can open it anywhere and hand it on.</span><span class="result-line"><strong>Any history.</strong> It takes a spreadsheet of daily net value or equity for any number of accounts and any length of history, recomputes slopes, drawdowns, volatility and alerts on the real date order without filling gaps, and can save itself as a new version with the updated data and rules embedded.</span><span class="result-line"><strong>Tunable, with a record.</strong> Thresholds and weights are editable on the page, an auto-calibration sets them from the account’s own post-signal drawdowns, and a pure-slope tool checks any pasted net-value column in seconds.</span><span class="result-line"><strong>Watch before act.</strong> Observation and reduction are separate levels, and the monitor never prescribes a position size; it tells the desk when to look.</span>'
+      ],
+      [
+        '05 · What stays private',
+        'The platform was calibrated on the desk’s own history and the monitor on live account histories my supervisor supplied; both the code and those series stay with the firm, so this page describes the method and not the figures. The monitor is a backtest and alerting tool, not a trading recommendation: its thresholds reflect the accounts it was calibrated on and should be re-set as the desk’s history grows. The factor results are relative statements about which signals helped on this universe, not forecasts.'
+      ],
+      [
+        '06 · What I took from the summer',
+        'Two lessons, one from each system. On the platform, an equal-weight vote of all eight factors trailed the best single factor in every sector. Working out why, through cross-factor correlations, alternative weights and orthogonalization, taught me to ask what a factor measures, what it assumes and what it adds before trusting its backtest. On the monitor, the useful signal was never the level of net value but the change in its slope: an account that is still rising can already be slowing, and that is the moment to look. Building a tool that other people would act on also taught me to label what was verified and what was not, and to keep the “watch” level separate from the “act” level so that an alert is a reason to think, not an instruction.'
+      ]
     ],
   },
   /* Olist: numbers from the repository's saved E1 results (outputs/e1/posthoc/posthoc_v.json,
