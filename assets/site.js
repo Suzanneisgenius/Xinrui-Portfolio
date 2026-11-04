@@ -208,39 +208,45 @@
     const prev = PROJECTS[pi], next = PROJECTS[ni];
     const contribution = d.contribution || CONTRIBUTION[id];
     const sections = (d.sections || []).filter(s => !/my contribution/i.test(s[0]));
+    const heads = sections.map(s => { const text = sentence(s[0]); return { text, slug: text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') }; });
 
     $('#detail-root').innerHTML = `
       <article class="detail">
         <a class="side-arrow prev" href="#/${prev.id}" aria-label="Previous: ${esc(DETAILS[prev.id].title)}">${chev('prev')}<span>${pad2(pi + 1)}</span></a>
         <a class="side-arrow next" href="#/${next.id}" aria-label="Next: ${esc(DETAILS[next.id].title)}">${chev('next')}<span>${pad2(ni + 1)}</span></a>
-        <header class="col wide">
-          <div class="crumbs"><span class="mono">${pad2(idx + 1)} / ${pad2(PROJECTS.length)}</span><a class="back" href="#projects">All projects</a></div>
-          <h1 class="t1">${esc(d.title)}</h1>
-          ${d.subtitle ? `<p class="subtitle">${esc(d.subtitle)}</p>` : ''}
-        </header>
-        <div class="col wide exhibit">${figure(id, d)}</div>
-        <div class="col wide">${specSheet(id, d, p)}</div>
-        <div class="col wide opening">
-          <p class="t2 question">${esc(d.headline)}</p>
-          ${contribution ? `<div class="mypart"><span class="meta">My part</span><p>${contribution}</p></div>` : ''}
-          <p class="tagline">${d.tagline}</p>
-          ${p.note ? `<p class="private">${esc(p.note)}</p>` : ''}
-        </div>
-        <div class="col">
-          <div class="body">
-            ${sections.map(s => {
-              const h = sentence(s[0]); let extra = '';
-              if (/method/i.test(h)) extra = strands(d);
-              if (/^validation/i.test(h)) extra = validation(d);
-              return `<h2 class="t2">${esc(h)}</h2><p>${s[1]}</p>${extra}`;
-            }).join('')}
-            ${(!sections.some(s => /^validation/i.test(sentence(s[0]))) ? validation(d) : '')}
-            ${(!sections.some(s => /method/i.test(sentence(s[0]))) ? strands(d) : '')}
+        <div class="wrap">
+          <header>
+            <div class="crumbs"><span class="mono">${pad2(idx + 1)} / ${pad2(PROJECTS.length)}</span><a class="back" href="#projects">All projects</a></div>
+            <h1 class="t1">${esc(d.title)}</h1>
+            ${d.subtitle ? `<p class="subtitle">${esc(d.subtitle)}</p>` : ''}
+          </header>
+          <div class="exhibit">${figure(id, d)}</div>
+          ${specSheet(id, d, p)}
+          <div class="read">
+            <aside class="lead">
+              <p class="t2 question">${esc(d.headline)}</p>
+              <p class="tagline">${d.tagline}</p>
+              ${p.note ? `<p class="private">${esc(p.note)}</p>` : ''}
+              ${heads.length > 1 ? `<nav class="toc" aria-label="On this page"><span class="meta">On this page</span>${heads.map(h => `<a href="#/${id}/${h.slug}">${esc(h.text)}</a>`).join('')}</nav>` : ''}
+            </aside>
+            <div class="text">
+              ${contribution ? `<div class="mypart"><span class="meta">My part</span><p>${contribution}</p></div>` : ''}
+              <div class="body">
+                ${sections.map((s, i) => {
+                  const h = heads[i]; let extra = '';
+                  if (/method/i.test(h.text)) extra = strands(d);
+                  if (/^validation/i.test(h.text)) extra = validation(d);
+                  return `<h2 class="t2" id="sec-${h.slug}">${esc(h.text)}</h2><p>${s[1]}</p>${extra}`;
+                }).join('')}
+                ${(!heads.some(h => /^validation/i.test(h.text)) ? validation(d) : '')}
+                ${(!heads.some(h => /method/i.test(h.text)) ? strands(d) : '')}
+              </div>
+              <nav class="pager" aria-label="Other projects">
+                <a href="#/${prev.id}"><span class="mono">${pad2(pi + 1)}</span>${esc(DETAILS[prev.id].title)}</a>
+                <a class="next" href="#/${next.id}"><span class="mono">${pad2(ni + 1)}</span>${esc(DETAILS[next.id].title)}</a>
+              </nav>
+            </div>
           </div>
-          <nav class="pager" aria-label="Other projects">
-            <a href="#/${prev.id}"><span class="mono">${pad2(pi + 1)}</span>${esc(DETAILS[prev.id].title)}</a>
-            <a class="next" href="#/${next.id}"><span class="mono">${pad2(ni + 1)}</span>${esc(DETAILS[next.id].title)}</a>
-          </nav>
         </div>
       </article>`;
     document.title = d.title + ' — Xinrui Song';
@@ -259,24 +265,41 @@
     $$('a', ghost).forEach(a => { if (a.dataset.for === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
     $$('.pill a').forEach(a => { const on = a.getAttribute('href') === '#' + cur; if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
   }
+  function spyDetail() {
+    if (vDetail.hidden) return;
+    const links = $$('.toc a'); if (!links.length) return;
+    const y = window.scrollY + window.innerHeight * 0.35;
+    let cur = null;
+    $$('.body h2[id]').forEach(h => { if (h.offsetTop <= y) cur = h.id; });
+    links.forEach(a => { if (cur && a.getAttribute('href').endsWith('/' + cur.slice(4))) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+  }
   let spyTick = false;
-  window.addEventListener('scroll', () => { if (!spyTick) { spyTick = true; requestAnimationFrame(() => { spy(); spyTick = false; }); } }, { passive: true });
+  window.addEventListener('scroll', () => { if (!spyTick) { spyTick = true; requestAnimationFrame(() => { spy(); spyDetail(); spyTick = false; }); } }, { passive: true });
 
   /* ---------- router ---------- */
   const vHome = $('#view-home'), vDetail = $('#view-detail');
-  let lastHomeScroll = 0;
+  let lastHomeScroll = 0, openId = null;
   function route() {
-    const m = location.hash.match(/^#\/([a-z0-9-]+)/);
+    const m = location.hash.match(/^#\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?/);
     if (m && DETAILS[m[1]]) {
-      if (!vHome.hidden) lastHomeScroll = window.scrollY;
-      renderDetail(m[1]);
-      vHome.hidden = true; vDetail.hidden = false; ghost.hidden = true;
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      $$('.pill a').forEach(a => a.removeAttribute('aria-current'));
-      $('#nav-projects').setAttribute('aria-current', 'true');
+      const same = !vDetail.hidden && openId === m[1];
+      if (!same) {
+        if (!vHome.hidden) lastHomeScroll = window.scrollY;
+        renderDetail(m[1]); openId = m[1];
+        vHome.hidden = true; vDetail.hidden = false; ghost.hidden = true;
+        document.body.classList.add('on-detail');
+        $$('.pill a').forEach(a => a.removeAttribute('aria-current'));
+        $('#nav-projects').setAttribute('aria-current', 'true');
+      }
+      const sec = m[2] && document.getElementById('sec-' + m[2]);
+      /* a direct link to a section lands on it instantly, after the browser's own fragment scroll */
+      if (sec) { const go = () => { sec.scrollIntoView({ block: 'start', behavior: same ? 'smooth' : 'instant' }); spyDetail(); }; if (same) go(); else setTimeout(go, 0); }
+      else if (!same) window.scrollTo({ top: 0, behavior: 'auto' });
+      spyDetail();
     } else {
       const wasDetail = !vDetail.hidden;
-      vDetail.hidden = true; vHome.hidden = false; ghost.hidden = false;
+      vDetail.hidden = true; vHome.hidden = false; ghost.hidden = false; openId = null;
+      document.body.classList.remove('on-detail');
       document.title = 'Xinrui Song';
       const tm = location.hash.match(/^#t\/([a-z]+)/);
       if (tm) { window.scrollTo({ top: 0, behavior: 'auto' }); openTab(tm[1]); }
