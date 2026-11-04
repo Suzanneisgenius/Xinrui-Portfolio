@@ -1,4 +1,43 @@
-# HANDOFF — Xinrui Song application site (shell v8.2, 2026-11-01)
+# HANDOFF — Xinrui Song application site
+
+## 2026-11-04 state (read this first; it supersedes §3 "Layout" below)
+
+Written for a cloud session that starts from `main` of `github.com/Suzanneisgenius/Xinrui-Portfolio`. There is no build step and no dependency; the site is served by GitHub Pages from `main` / root at `https://suzanneisgenius.github.io/Xinrui-Portfolio/`, and a push to `main` redeploys it within a minute or two.
+
+**Where things stand.** `main` is at `9ea8096`, working tree clean except an untracked `hero-compare/` folder (one comparison screenshot, not part of the site; delete or ignore). The companion demo lives in a second repository, `github.com/Suzanneisgenius/nav-risk-workbench` (`main` at `115c47d`, hosted at `https://suzanneisgenius.github.io/nav-risk-workbench/`). The site links to that hosted page only, never to a repository page.
+
+**Done today, this repository**
+
+- Project detail pages (`renderDetail` in `assets/site.js`, "detail page" block in `assets/site.css`): a centred `.wrap` replaces the left-offset column; the exhibit and the spec strip run the full wrap; from 1024px the reading block `.read` splits into `.lead` (research question in `.t2`, one-line conclusion, private note, a sticky "On this page" list `.toc` whose current item follows the scroll) and `.text` ("My part" first, then the sections at a 39em measure, then the pager). Section headings carry `id="sec-<slug>"`; the router accepts `#/<project>/<slug>` and scrolls to that heading without re-rendering when the page is already open (instant on a direct load, smooth on an in-page click). `body.on-detail` is set while a detail page is open.
+- Home page: Projects, About and the footer use the same `.wrap`. Project rows (`renderHome`) are `64px | title and summary | 260px` from 1024px, with the Project / Tools / Access facts in the third column (the `.spec-row.compact` block is a direct child of the row, not inside the content span). About is `h2` → `.grid` with a sticky `.facts` list (Studying, Summer 2026, Before that, Drawn to, Away from a screen, Email; every entry copied from the paragraphs beside it, nothing new) and the six paragraphs, the first set as `.lede`.
+- Wrap sizes: `.wrap` max 1248px with side padding `clamp(20px, 8vw, 112px)` so the fixed ghost nav (right edge, ≥1100px, home only) never sits on content; `.detail .wrap` max 1280px with `clamp(20px, 6vw, 86px)`, enough for the side arrows and for the longest title to fit one line at 1440px. Both grids collapse to one column below 1024px; the `.toc` is hidden there. The hero keeps its own centred 640px card. `.col` / `.col.wide` remain in the CSS but no markup uses them any more.
+- Checked at 1920, 1440, 1100, 1024, 900 and 375px: no horizontal overflow, sticky list and current-section highlight working, direct section links landing 96px under the fixed header. Not checked today: the dark theme with the new `.facts` and `.toc` styles, and a keyboard-focus pass over the new links. Do both before any further layout work.
+
+**Done today, the workbench repository** (for context; details in that repo's README): the Account monitor became a tearsheet (performance summary card with the cumulative return as the one highlighted figure, returns by period, metrics grid, worst drawdowns, monthly returns; gains green, losses red, unsigned figures in ink); the peak-score date is highlighted in the status line, the NAV chart and the alert history, and a High level tints the whole page frame; the first screen carries a one-line purpose and an "Explore a flagged date →" entry that opens the Demo Atlas case of 2025-05-30 with a Strict / Normal switch. The exhibit on this site, `images/nav-risk-workbench.jpg` (1280×800, JPEG quality 82), was recaptured after each of those rounds; recapture it again if the demo's first screen changes.
+
+**Open items**
+
+1. The owner's review of the workbench listed three suggestions; only the first (purpose line and demo entry) arrived and was built. Suggestions 2 and 3 are still to come from the owner.
+2. Dark-theme and keyboard-focus passes over the new home and detail layouts (see above).
+3. Items in §5 that are still open there, unchanged.
+
+**Rules that still bind, in one place**
+
+- Commit messages carry no `Co-Authored-By` line and no "Generated with" footer, in either repository. Commit as `Suzanneisgenius <180459943+Suzanneisgenius@users.noreply.github.com>`.
+- Never invent numbers, awards or results. Keep caveats attached to figures. No firm data, account series or the internship dashboard on the site.
+- Prose: short sentences, plain verbs; no "not X but Y", no em dashes, no one-line closers, no "showcase / leverage / passionate / journey".
+- UI edits here follow this file's design rules; the owner's global instructions map "edit UI in an existing project" to the `ui-ux-pro-max` skill. No redesign skill unless asked by name. Charts never use two y-axes.
+- `~/xinrui-site` (the DS baseline) is never touched from this work. A cloud session will not have it anyway.
+
+**How to work in the cloud**
+
+- Syntax: `node --check assets/site.js assets/details.js`.
+- Preview: `python3 -I -m http.server 8013 --bind 127.0.0.1` from the repository root, then `http://127.0.0.1:8013/`, `#/quant-platform`, `#/bankroll-risk/validation`, `#about`. Headless Chrome, where available, for width checks: `chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1440,900 --virtual-time-budget=8000 --screenshot=out.png "http://127.0.0.1:8013/?v=1#/quant-platform"`; bump `?v=` to defeat caching. Headless Chrome clamps widths under about 500px, so phone checks need a device-emulation tool.
+- Record each change as a dated bullet at the end of `README.md` ("quant branch" section) and, when it changes a rule in this file, update this file too.
+
+---
+
+# Shell v8.2 handoff (2026-11-01), kept for reference
 
 > **This folder is the quant branch.** `~/Xinrui-Portfolio` is a full copy of shell v8.2, made on 2026-11-01 for a quantitative-finance reading of the same site. The baseline is `~/xinrui-site/xinrui-site-v8/site-v3` (also packed as `~/xinrui-site/xinrui-site-v8.2-handoff.zip`); do not edit the baseline from here. Everything below describes the shared shell and still applies. What this copy changes is listed in `README.md` under "quant branch": home order (SPY/IEF → Bankroll Risk → Multi-Factor → Malaria, Multi-Factor year 2026), home summaries, hero line 2 ("Quantitative research on futures signals and portfolio risk"; fall 2027 is in the About spec sheet only), the About and Education tabs, the Projects intro and the About section (Experience row, internship and data-quality paragraphs with resume figures, copy draft v2 of 2026-11-02). Numbers, caveats, dashboards, links and the design system are unchanged, except that GitHub is removed from this copy (hero row and Contact tab; §5 item 1 does not apply here). Local preview for this copy: `python3 -I -m http.server 8011 --directory ~/Xinrui-Portfolio --bind 127.0.0.1`. **Published:** this copy is a git repository pushed to `github.com/Suzanneisgenius/Xinrui-Portfolio`, served by GitHub Pages from `main` / root at `https://suzanneisgenius.github.io/Xinrui-Portfolio/`; a push to `main` redeploys it at the same URL. §5 item 7 (absolute `og:image`) is done here; §9's "not a git repository" note applies to the baseline only.
 
@@ -55,7 +94,7 @@ Hierarchy comes from size and grey, never from bold. No all-caps labels, no midd
 
 Color. `--paper #F6F7F5`, `--ink #1C1F1D`, `--muted #6A716C`, `--faint #B4BAB6`, `--line #DDE2DE`, `--accent #1F3A5F`. Accent appears only on link hover and the terminal caret. Dark theme exists (`html[data-theme="dark"]`), toggled from the header pill, stored in `localStorage`. Terminal: `#0F1117` / `#E6E7EB` / links `#8AB4F8` / prompt `#6CFF6C`. It is the only dark block on the site.
 
-Layout. Hero is centred. Everything below sits in a 680px column offset from the left by `--left` (`clamp(20px, 12vw, 200px)`), 920px for figures (`.col.wide`, capped at the viewport minus `--left`). Section spacing 112px desktop, 72px mobile. No cards, no shadows on content, no rounded boxes except the header pills, the portrait and the terminal.
+Layout (superseded on 2026-11-04, see the top of this file). Hero is centred. Everything below sat in a 680px column offset from the left by `--left` (`clamp(20px, 12vw, 200px)`), 920px for figures (`.col.wide`, capped at the viewport minus `--left`). Section spacing 112px desktop, 72px mobile. No cards, no shadows on content, no rounded boxes except the header pills, the portrait and the terminal.
 
 Header (from 02). Fixed, three parts: brand pill left, centred pill nav (Projects / About / Contact, real anchors, current section highlighted), dark "Email me" pill right with the theme toggle inside. Pill nav hides under 760px.
 
