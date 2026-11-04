@@ -4,7 +4,7 @@
 
 Written for a cloud session that starts from `main` of `github.com/Suzanneisgenius/Xinrui-Portfolio`. There is no build step and no dependency; the site is served by GitHub Pages from `main` / root at `https://suzanneisgenius.github.io/Xinrui-Portfolio/`, and a push to `main` redeploys it within a minute or two.
 
-**Where things stand.** `main` is at `9ea8096`, working tree clean except an untracked `hero-compare/` folder (one comparison screenshot, not part of the site; delete or ignore). The companion demo lives in a second repository, `github.com/Suzanneisgenius/nav-risk-workbench` (`main` at `115c47d`, hosted at `https://suzanneisgenius.github.io/nav-risk-workbench/`). The site links to that hosted page only, never to a repository page.
+**Where things stand.** `main` is at `976e8a8` (dark-theme and keyboard passes, pushed from a cloud session on 2026-11-04; the live site was not re-checked from that session because its network policy blocks `suzanneisgenius.github.io`, so confirm the deploy in a browser). Working tree clean; a local checkout may still hold an untracked `hero-compare/` folder (one comparison screenshot, not part of the site; delete or ignore). The companion demo lives in a second repository, `github.com/Suzanneisgenius/nav-risk-workbench` (`main` at `115c47d`, hosted at `https://suzanneisgenius.github.io/nav-risk-workbench/`). The site links to that hosted page only, never to a repository page.
 
 **Done today, this repository**
 
@@ -125,7 +125,7 @@ Motion inventory, complete. Terminal typing; title and link colour on hover (200
 6. Hero line 2 wording and the About paragraphs are drafts; edit in `index.html`.
 7. `og:image` in `index.html` is a relative path; make it the absolute URL once the site has a domain.
 8. Poker repo housekeeping (outside this folder): `~/poker-analytics-private` `main` is pushed (7b35a0a at `origin/main`, checked 2026-11-03). Whether Render has redeployed to it has not been checked from here; the static artifact in `projects/poker-risk-lab/` was built from 3fcb028, and the saved case-study results it carries match the 7b35a0a numbers used on the Poker page.
-9. Optional trims: Poker "My part" is nine sentences; three or four would read better. Poker spec sheet has four footnotes; two would do.
+9. Optional trims: Poker "My part" was nine sentences; the 2026-11-03 r8 sync brought it to five, which reads fine. The four spec-sheet footnotes each carry the caveat for one key number (reference case, run size, hand count, model set), so they stay: §4 says caveats remain attached to figures. Treat this item as closed unless the owner wants a further cut.
 10. Optional, quant copy only: a fifth project on commodity futures built from public data. Not added in the 2026-11-02 round. It needs its own six sections in `details.js`, a `PROJECTS` entry, and at least one real figure before it goes on the list.
 
 Done since v8: the Render URL (was `[RENDER_URL]`, now `LINKS['bankroll-risk'].app`), favicon and OG image, the two r7 dashboards copied in, the portrait.
