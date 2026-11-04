@@ -84,7 +84,7 @@ const DETAILS = {
     title: 'Promised Delivery Dates on Olist',
     subtitle: 'When is a matched comparison still unequal?',
     headline: 'How many days should a shop promise, and does a better forecast promise fewer?',
-    tagline: 'A promised delivery date trades late arrivals against spare days. I derive the loss-minimising whole-day promise as a quantile of delivery time, calibrate it so the promised coverage holds, and then test, under a pre-registered design, whether a model with lower forecast loss actually promises fewer days at the same reliability. On public Olist orders from Brazil, it did not.',
+    tagline: 'A promised delivery date trades late arrivals against spare days. I derive the loss-minimising whole-day promise as a quantile of delivery time, the same object as a value-at-risk threshold, calibrate it so the promised coverage holds, and then test, under a pre-registered design, whether a model with lower forecast loss actually promises fewer days at the same reliability. On public Olist orders from Brazil, it did not.',
     chips: ['Python', 'pandas', 'scikit-learn', 'DuckDB', 'Quantile regression', 'Conformal calibration', 'pytest'],
     screenshot: 'images/olist-delivery-diagnostics.jpg',
     screenshotSize: [1280, 800],
