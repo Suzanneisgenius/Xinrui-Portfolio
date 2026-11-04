@@ -67,6 +67,8 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+/* headings take focus after a route change so keyboard users continue from the new page, not from the header */
+h1:focus-visible, h2:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 2px; }
 h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
 ul { padding: 0; list-style: none; }
 strong { font-weight: 500; }
@@ -200,7 +202,7 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
   padding: 30px 0; border-bottom: 1px solid var(--line); color: inherit;
 }
 .project-row .idx { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 9px; }
-.project-row .idx small { display: block; color: var(--faint); margin-top: 6px; font-size: 12px; }
+.project-row .idx small { display: block; color: var(--muted); margin-top: 6px; font-size: 12px; } /* the year is a fact, so it reads at the same grey as the index */
 .project-row .t2 { transition: color 200ms var(--ease); }
 .project-row:hover .t2 { color: var(--accent); }
 .project-row .summary { margin-top: 10px; max-width: 39em; color: var(--ink); }

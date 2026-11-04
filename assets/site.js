@@ -95,7 +95,7 @@
     timer = setTimeout(step, 0);
     return true;
   }
-  tabs.forEach(a => a.addEventListener('click', e => { e.preventDefault(); history.replaceState(null, '', '#t/' + a.dataset.tab); openTab(a.dataset.tab); }));
+  tabs.forEach(a => a.addEventListener('click', e => { e.preventDefault(); if (a.classList.contains('disabled')) return; history.replaceState(null, '', '#t/' + a.dataset.tab); openTab(a.dataset.tab); }));
   $$('a[href^="#t/"]:not([data-tab])').forEach(a => a.addEventListener('click', e => {
     e.preventDefault(); const key = a.getAttribute('href').slice(3);
     if (vHome.hidden) { location.hash = '#t/' + key; return; }
@@ -217,7 +217,7 @@
         <div class="wrap">
           <header>
             <div class="crumbs"><span class="mono">${pad2(idx + 1)} / ${pad2(PROJECTS.length)}</span><a class="back" href="#projects">All projects</a></div>
-            <h1 class="t1">${esc(d.title)}</h1>
+            <h1 class="t1" tabindex="-1">${esc(d.title)}</h1>
             ${d.subtitle ? `<p class="subtitle">${esc(d.subtitle)}</p>` : ''}
           </header>
           <div class="exhibit">${figure(id, d)}</div>
@@ -295,6 +295,8 @@
       /* a direct link to a section lands on it instantly, after the browser's own fragment scroll */
       if (sec) { const go = () => { sec.scrollIntoView({ block: 'start', behavior: same ? 'smooth' : 'instant' }); spyDetail(); }; if (same) go(); else setTimeout(go, 0); }
       else if (!same) window.scrollTo({ top: 0, behavior: 'auto' });
+      /* the element that was activated is hidden now, so move keyboard focus to the page title */
+      if (!same) { const h = $('#detail-root h1'); if (h) h.focus({ preventScroll: true }); }
       spyDetail();
     } else {
       const wasDetail = !vDetail.hidden;
@@ -306,7 +308,8 @@
       if (wasDetail && !tm) {
         const target = location.hash === '#projects' ? $('#projects') : null;
         if (target) target.scrollIntoView({ block: 'start' }); else window.scrollTo({ top: lastHomeScroll, behavior: 'auto' });
-          }
+        if (target) { const h = $('#projects-h'); h.tabIndex = -1; h.focus({ preventScroll: true }); } /* "All projects" lands keyboard focus on the list heading */
+      }
       spy();
     }
   }
