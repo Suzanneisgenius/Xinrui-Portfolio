@@ -13,7 +13,7 @@
     { id: 'quant-platform', year: '2026', type: 'Internship research', role: 'Factor definitions, backtest contract and validation checks; the NAV risk monitor end to end',
       summary: 'Two systems from a summer at Guangzhou Futures: a factor research platform for 54 commodity futures with look-ahead ruled out by construction, and a net-value risk monitor I designed around one measure, the slope of the equity curve, that turns an account’s daily net value into graded de-risking alerts.',
       tools: 'Python, pandas, NumPy, JavaScript',
-      note: 'Internship work. No firm data appears here; code and account series stay with the firm and the core algorithms are left out. This page describes the design and the reasoning.' },
+      note: 'Internship work. No firm data appears here; the firm’s code, account series and core algorithms stay private. The demo workbench is a separate build on synthetic accounts.' },
     { id: 'olist-delivery-promises', year: '2026', type: 'Independent research', role: 'Research question, quantile derivation, pre-registered design, evaluation',
       summary: 'Under a 9:1 late-to-early cost ratio, promising the 90% quantile of delivery time instead of the mean cut expected loss by 34% and raised on-time coverage from 65.5% to 91.4% on 12,045 orders. A pre-registered comparison then tests whether a lower-loss model promises fewer days.',
       tools: 'Python, pandas, scikit-learn, DuckDB' },
@@ -35,6 +35,7 @@
     'bankroll-risk': { dashboard: 'projects/poker-risk-lab/', dashboardLabel: 'Research overview', second: 'projects/poker-risk-lab/case-study/', secondLabel: 'Case study',
       app: 'https://poker-analytics-suite.onrender.com/', appLabel: 'Interactive lab', hint: 'Runs on Render\'s free plan; after a quiet spell the first visit takes about a minute to start.' },
     'olist-delivery-promises': { dashboard: 'https://suzanneisgenius.github.io/olist-delivery-promises/', dashboardLabel: 'Project site' },
+    'quant-platform': { dashboard: 'https://suzanneisgenius.github.io/nav-risk-workbench/', dashboardLabel: 'Demo workbench' },
     'health-dashboard': { dashboard: 'malaria_dashboard_v3_8_4.html', dashboardLabel: 'Dashboard' },
     'spy-ief-research-atlas': { dashboard: 'projects/spy-ief/', dashboardLabel: 'Interactive atlas', offline: 'projects/spy-ief/offline.html', offlineLabel: 'Offline atlas' },
   };
