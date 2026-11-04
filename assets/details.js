@@ -67,7 +67,7 @@ const DETAILS = {
       ],
       [
         '05 · What stays private',
-        'The platform was calibrated on the desk’s own history and the monitor on live account histories my supervisor supplied; both the code and those series stay with the firm, so this page describes the method and not the figures. The monitor is a backtest and alerting tool, not a trading recommendation: its thresholds reflect the accounts it was calibrated on and should be re-set as the desk’s history grows. The factor results are relative statements about which signals helped on this universe, not forecasts.'
+        'Nothing on this page comes from the firm’s data. The platform was calibrated on the desk’s own history and the monitor on live account histories my supervisor supplied; the code, those series and every figure derived from them stay with the firm. The methods are described in outline only, and the core algorithms, including the exact factor definitions, the signal-combination logic and the full rule set behind the alerts, are deliberately left out. What is shown here is the design and the reasoning. The same discipline runs through the public projects on this site, on public data: timestamping what was known when, calibrating a rule against what followed its signals, measuring the error around an estimate, and keeping the watch level apart from the act level. The monitor is a backtest and alerting tool, not a trading recommendation; its thresholds reflect the accounts it was calibrated on and should be re-set as the desk’s history grows.'
       ],
       [
         '06 · What I took from the summer',
