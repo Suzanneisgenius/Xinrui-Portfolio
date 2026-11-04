@@ -44,7 +44,7 @@ const DETAILS = {
     chips: ['Python', 'pandas', 'NumPy', 'JavaScript', 'Factor evaluation', 'Backtesting', 'Risk monitoring'],
     screenshot: 'images/nav-risk-workbench.jpg',
     screenshotSize: [1280, 800],
-    screenshotAlt: 'The demo workbench, account monitor: a synthetic account’s net value, drawdown, exposure and volatility, the risk level for the latest date, and the trajectory chart with a signal strip beneath it',
+    screenshotAlt: 'The demo workbench, account monitor: a synthetic account’s risk level for the latest date, its net value chart with a signal strip beneath it, and a performance summary table of returns, risk, drawdown and exposure',
     metrics: [
       { label: 'Commodity futures covered', value: '54', note: 'Five sectors; eight fundamental factors tested on the platform.' },
       { label: 'Slope horizons', value: '3 / 5 / 10 days', note: 'Least-squares slope of net value over the trailing points, scaled to percent per day.' },
