@@ -114,12 +114,12 @@
         <span>
           <h3 class="t2">${esc(d.title)}</h3>
           <p class="summary">${esc(p.summary)}</p>
-          <div class="spec-row compact">
+        </span>
+        <div class="spec-row compact">
             <div class="spec-item"><span class="spec-l">Project</span><span class="spec-v">${esc(p.type)}</span></div>
             <div class="spec-item"><span class="spec-l">Tools</span><span class="spec-v">${esc(p.tools)}</span></div>
             ${p.note ? `<div class="spec-item"><span class="spec-l">Access</span><span class="spec-v">Private code and data</span></div>` : ''}
-          </div>
-        </span>
+        </div>
       </a>`;
     }).join('');
   }

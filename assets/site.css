@@ -88,6 +88,10 @@ strong { font-weight: 500; }
 /* ---------- column ---------- */
 .col { width: 100%; max-width: var(--col); margin-left: var(--left); padding: 0 var(--gutter); }
 .col.wide { max-width: min(var(--wide), calc(100% - var(--left))); } /* 920px, or what fits beside the left offset (overflowed at 960–1120px) */
+/* centred wrap: projects, about, detail pages and the footer. Side padding grows with the viewport so the
+   fixed ghost nav and side arrows never sit on the content. */
+.wrap { width: 100%; max-width: 1248px; margin-inline: auto; padding-inline: clamp(var(--gutter), 8vw, 112px); }
+.detail .wrap { max-width: 1280px; padding-inline: clamp(var(--gutter), 6vw, 86px); } /* only the slim side arrows sit beside a detail page */
 @media (max-width: 720px) { :root { --left: 0px; } }
 
 section { padding-top: var(--section); }
@@ -192,21 +196,39 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
 /* ---------- project list (numbered rows) ---------- */
 .project-list { margin-top: 40px; border-top: 1px solid var(--line); }
 .project-row {
-  display: grid; grid-template-columns: 64px 1fr; gap: 6px 24px;
+  display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 6px 24px;
   padding: 30px 0; border-bottom: 1px solid var(--line); color: inherit;
 }
 .project-row .idx { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 9px; }
 .project-row .idx small { display: block; color: var(--faint); margin-top: 6px; font-size: 12px; }
 .project-row .t2 { transition: color 200ms var(--ease); }
 .project-row:hover .t2 { color: var(--accent); }
-.project-row .summary { margin-top: 10px; max-width: 34em; color: var(--ink); }
+.project-row .summary { margin-top: 10px; max-width: 39em; color: var(--ink); }
+.project-row .spec-row.compact { grid-column: 2; }
+@media (min-width: 1024px) {
+  .project-row { grid-template-columns: 64px minmax(0, 1fr) 260px; column-gap: 40px; }
+  .project-row .spec-row.compact { grid-column: 3; grid-row: 1; flex-direction: column; gap: 12px; padding-top: 8px; }
+}
 @media (max-width: 560px) {
   .project-row { grid-template-columns: 1fr; gap: 2px; padding: 24px 0; }
+  .project-row .spec-row.compact { grid-column: 1; }
   .project-row .idx small { display: inline; margin-left: 10px; }
 }
 
-/* ---------- about ---------- */
-.about p { max-width: 34em; }
+/* ---------- about: facts list beside the paragraphs ---------- */
+.about .grid { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+.about .stack > * + * { margin-top: 28px; }
+.about p { max-width: 39em; }
+.facts { border-top: 1px solid var(--line); }
+.facts div { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.facts dt { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.facts dd { margin-top: 3px; font-size: 15px; line-height: 1.5; }
+.facts dd a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.facts dd a:hover { text-decoration-color: var(--accent); }
+@media (min-width: 1024px) {
+  .about .grid { grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); column-gap: clamp(48px, 6vw, 96px); margin-top: 36px; }
+  .facts { position: sticky; top: 96px; align-self: start; }
+}
 
 /* ---------- terminal ---------- */
 .terminal {
@@ -222,14 +244,13 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
 
 /* ---------- footer ---------- */
 .site-footer { margin-top: var(--section); border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 14px; color: var(--muted); }
-.site-footer .col { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
 /* ---------- detail page ----------
    Centred wrap instead of the home page's left-offset column: exhibit and spec strip run the full
    wrap, then the reading block splits into a lead column (question, conclusion, contents) and a
    text column at a 39em measure. One column below 1024px. */
 .detail { padding-top: 120px; }
-.detail .wrap, .on-detail .site-footer .col { width: 100%; max-width: 1248px; margin-inline: auto; padding-inline: clamp(var(--gutter), 5vw, 72px); }
 .detail .crumbs { display: flex; gap: 16px; align-items: baseline; }
 .detail .crumbs .back { font-size: 14px; color: var(--muted); }
 .detail .crumbs .back:hover { color: var(--ink); }
