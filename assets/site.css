@@ -20,9 +20,7 @@
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --col: 680px;
-  --wide: 920px;
   --gutter: 20px;
-  --left: clamp(20px, 12vw, 200px);
   --section: 112px;
   --gap: 24px;
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -88,13 +86,10 @@ strong { font-weight: 500; }
 }
 
 /* ---------- column ---------- */
-.col { width: 100%; max-width: var(--col); margin-left: var(--left); padding: 0 var(--gutter); }
-.col.wide { max-width: min(var(--wide), calc(100% - var(--left))); } /* 920px, or what fits beside the left offset (overflowed at 960–1120px) */
 /* centred wrap: projects, about, detail pages and the footer. Side padding grows with the viewport so the
    fixed ghost nav and side arrows never sit on the content. */
 .wrap { width: 100%; max-width: 1248px; margin-inline: auto; padding-inline: clamp(var(--gutter), 8vw, 112px); }
 .detail .wrap { max-width: 1280px; padding-inline: clamp(var(--gutter), 6vw, 86px); } /* only the slim side arrows sit beside a detail page */
-@media (max-width: 720px) { :root { --left: 0px; } }
 
 section { padding-top: var(--section); }
 @media (max-width: 720px) { :root { --section: 72px; } }
