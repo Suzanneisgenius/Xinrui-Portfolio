@@ -278,7 +278,7 @@
 
   /* ---------- router ---------- */
   const vHome = $('#view-home'), vDetail = $('#view-detail');
-  let lastHomeScroll = 0, openId = null;
+  let lastHomeScroll = 0, openId = null, navigated = false; /* true after the first in-page navigation: a direct load keeps focus where the browser put it */
   function route() {
     const m = location.hash.match(/^#\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?/);
     if (m && DETAILS[m[1]]) {
@@ -296,7 +296,7 @@
       if (sec) { const go = () => { sec.scrollIntoView({ block: 'start', behavior: same ? 'smooth' : 'instant' }); spyDetail(); }; if (same) go(); else setTimeout(go, 0); }
       else if (!same) window.scrollTo({ top: 0, behavior: 'auto' });
       /* the element that was activated is hidden now, so move keyboard focus to the page title */
-      if (!same) { const h = $('#detail-root h1'); if (h) h.focus({ preventScroll: true }); }
+      if (!same && navigated) { const h = $('#detail-root h1'); if (h) h.focus({ preventScroll: true }); }
       spyDetail();
     } else {
       const wasDetail = !vDetail.hidden;
@@ -313,7 +313,7 @@
       spy();
     }
   }
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', () => { navigated = true; route(); });
 
   /* ---------- boot ---------- */
   setTheme(document.documentElement.dataset.theme || 'light');
