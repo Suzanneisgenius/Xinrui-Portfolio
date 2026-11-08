@@ -212,20 +212,12 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
   .project-row .idx small { display: inline; margin-left: 10px; }
 }
 
-/* ---------- about: facts list beside the paragraphs ---------- */
-.about .grid { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+/* ---------- about: the paragraphs run the full wrap ---------- */
+.about .grid { margin-top: 32px; }
 .about .stack > * + * { margin-top: 28px; }
-.about p { max-width: 39em; }
-.facts { border-top: 1px solid var(--line); }
-.facts div { padding: 12px 0; border-bottom: 1px solid var(--line); }
-.facts dt { font-family: var(--mono); font-size: 13px; color: var(--muted); }
-.facts dd { margin-top: 3px; font-size: 15px; line-height: 1.5; }
-.facts dd a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
-.facts dd a:hover { text-decoration-color: var(--accent); }
-@media (min-width: 1024px) {
-  .about .grid { grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); column-gap: clamp(48px, 6vw, 96px); margin-top: 36px; }
-  .facts { position: sticky; top: 96px; align-self: start; }
-}
+.about p { max-width: none; font-size: 18px; line-height: 1.7; }
+.about p.lede { font-size: 21px; line-height: 1.5; }
+@media (max-width: 720px) { .about p { font-size: 16px; line-height: 1.6; } .about p.lede { font-size: 17px; } }
 
 /* ---------- terminal ---------- */
 .terminal {
