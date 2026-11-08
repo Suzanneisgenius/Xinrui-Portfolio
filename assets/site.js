@@ -223,12 +223,11 @@
           <div class="exhibit">${figure(id, d)}</div>
           ${specSheet(id, d, p)}
           <div class="read">
-            <aside class="lead">
+            <div class="lead">
               <p class="t2 question">${esc(d.headline)}</p>
               <p class="tagline">${d.tagline}</p>
               ${p.note ? `<p class="private">${esc(p.note)}</p>` : ''}
-              ${heads.length > 1 ? `<nav class="toc" aria-label="On this page"><span class="meta">On this page</span>${heads.map(h => `<a href="#/${id}/${h.slug}">${esc(h.text)}</a>`).join('')}</nav>` : ''}
-            </aside>
+            </div>
             <div class="text">
               ${contribution ? `<div class="mypart"><span class="meta">My part</span><p>${contribution}</p></div>` : ''}
               <div class="body">
@@ -265,7 +264,7 @@
     $$('a', ghost).forEach(a => { if (a.dataset.for === cur) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
     $$('.pill a').forEach(a => { const on = a.getAttribute('href') === '#' + cur; if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
   }
-  function spyDetail() {
+  function spyDetail() { /* no-op since 2026-11-07: the contents list is gone; section ids and #/<project>/<slug> routes remain */
     if (vDetail.hidden) return;
     const links = $$('.toc a'); if (!links.length) return;
     const y = window.scrollY + window.innerHeight * 0.35;

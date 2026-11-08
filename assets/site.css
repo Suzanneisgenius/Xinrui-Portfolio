@@ -265,22 +265,15 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
 .spec-notes li + li { margin-top: 2px; }
 @media (max-width: 560px) { .spec-row { gap: 12px 24px; } .spec-item.num .spec-v { font-size: 20px; } }
 
-.read { margin-top: 64px; display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
-.lead .question { max-width: 26em; }
-.lead .tagline { margin-top: 24px; max-width: 34em; color: var(--muted); }
+.read { margin-top: 64px; }
+.lead .question { max-width: 30em; }
+.lead .tagline { margin-top: 24px; color: var(--muted); font-size: 18px; line-height: 1.7; }
 .lead .private { margin-top: 12px; font-size: 14px; color: var(--muted); }
-.toc { display: none; }
+.text { margin-top: 48px; }
 .text .mypart .meta { display: block; margin-bottom: 6px; }
-.text .mypart p, .text .body p, .text .strand p { max-width: 39em; }
+.text .mypart p, .text .body p, .text .strand p { max-width: none; font-size: 18px; line-height: 1.7; }
 .text .body { margin-top: 48px; }
-@media (min-width: 1024px) {
-  .read { grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); column-gap: clamp(48px, 6vw, 96px); }
-  .lead .question, .lead .tagline { max-width: none; }
-  .toc { display: block; position: sticky; top: 96px; margin-top: 40px; padding-top: 12px; border-top: 1px solid var(--line); }
-  .toc .meta { display: block; margin-bottom: 6px; }
-  .toc a { display: block; padding: 5px 0; font-size: 14px; color: var(--muted); transition: color 200ms var(--ease); }
-  .toc a:hover, .toc a[aria-current="true"] { color: var(--ink); }
-}
+@media (max-width: 720px) { .text .mypart p, .text .body p, .text .strand p, .lead .tagline { font-size: 16px; line-height: 1.6; } }
 @media (max-width: 760px) { .detail { padding-top: 92px; } .read { margin-top: 48px; } }
 
 .detail .figure { margin-top: 48px; }
