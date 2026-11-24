@@ -254,7 +254,7 @@
 
   /* ---------- scroll-spy for ghost nav + pill ---------- */
   const ghost = $('#ghost');
-  const spyTargets = ['top', 'projects', 'about'];
+  const spyTargets = ['top', 'experience', 'projects', 'skills', 'about'];
   function spy() {
     if (vHome.hidden) return;
     const y = window.scrollY + window.innerHeight * 0.35;

@@ -186,6 +186,40 @@ p a:hover, li a:hover, dd a:hover, .link:hover { text-decoration-color: var(--ac
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .caret { display: none; } }
 
+/* ---------- hero buttons: one filled, one outlined, same pill as the header CTA ---------- */
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 999px; border: 1px solid var(--line); font-size: 15px; font-weight: 500; color: var(--ink);
+  transition: border-color 200ms var(--ease), opacity 200ms var(--ease); }
+.btn:hover { border-color: var(--ink); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.btn.primary:hover { opacity: .88; }
+.actions + .tabs { margin-top: 20px; }
+
+/* ---------- experience: employer, role, dates, then bullets across the wrap ---------- */
+.jobs { margin-top: 40px; border-top: 1px solid var(--line); }
+.job { padding: 32px 0; border-bottom: 1px solid var(--line); }
+.job header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 32px; align-items: baseline; }
+.job .role { grid-column: 1; color: var(--muted); }
+.job .when { grid-column: 2; grid-row: 1; text-align: right; white-space: nowrap; }
+.job ul { margin-top: 16px; padding-left: 1.2em; list-style: disc; }
+.job li { padding-left: 4px; font-size: 18px; line-height: 1.65; }
+.job li::marker { color: var(--faint); }
+.job li + li { margin-top: 10px; }
+.job .more { margin-top: 14px; font-size: 15px; color: var(--muted); }
+@media (max-width: 720px) {
+  .job header { grid-template-columns: 1fr; }
+  .job .when { grid-column: 1; grid-row: auto; text-align: left; white-space: normal; }
+  .job li { font-size: 16px; line-height: 1.6; }
+}
+
+/* ---------- skills: one ruled row per group, items as outlined slots ---------- */
+.skills { margin-top: 40px; border-top: 1px solid var(--line); }
+.skills > div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 12px 32px; padding: 22px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.skills dt { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 8px; }
+.skills dd { display: flex; flex-wrap: wrap; gap: 8px; }
+.skills dd span { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
+@media (max-width: 720px) { .skills > div { grid-template-columns: 1fr; gap: 8px; } .skills dt { padding-top: 0; } }
+
 /* ---------- section head ---------- */
 .section-head { display: flex; align-items: baseline; gap: 20px; }
 .section-head .idx { font-family: var(--mono); font-size: 13px; color: var(--faint); }
