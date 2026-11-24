@@ -15,6 +15,8 @@ Written for a cloud session that starts from `main` of `github.com/Suzanneisgeni
 
 **Done today, the workbench repository** (for context; details in that repo's README): the Account monitor became a tearsheet (performance summary card with the cumulative return as the one highlighted figure, returns by period, metrics grid, worst drawdowns, monthly returns; gains green, losses red, unsigned figures in ink); the peak-score date is highlighted in the status line, the NAV chart and the alert history, and a High level tints the whole page frame; the first screen carries a one-line purpose and an "Explore a flagged date →" entry that opens the Demo Atlas case of 2025-05-30 with a Strict / Normal switch. The exhibit on this site, `images/nav-risk-workbench.jpg` (1280×800, JPEG quality 82), was recaptured after each of those rounds; recapture it again if the demo's first screen changes.
 
+**2026-11-24 update.** Home page order is now Experience, Projects, Skills, About. Experience lists Guangzhou Futures, China Everbright Securities and ByteDance with bullets from the owner's resume (she chose to publish those internship figures); Skills is four ruled rows of outlined slots drawn from the Education tab and the project tool lists; the hero has two buttons (View projects, Experience). About and project pages are single-column at full wrap width, no sidebars, by the owner's instruction. Guangdong Bozhong is no longer named anywhere on the site.
+
 **Open items**
 
 1. The owner's review of the workbench listed three suggestions; only the first (purpose line and demo entry) arrived and was built. Suggestions 2 and 3 are still to come from the owner.
